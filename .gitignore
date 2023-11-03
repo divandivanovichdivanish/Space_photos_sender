@@ -1,4 +1,6 @@
 *.env
 old_main.py
 test.py
-images/
+/images/*
+!/images/launch_example.png
+__pycache__/

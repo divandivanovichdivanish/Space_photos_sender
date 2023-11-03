@@ -12,4 +12,4 @@ for photo_info in response.json():
 	date = response_date.split()
 	split_date = date[0].split("-")
 	identifier = photo_info["image"]
-	download_image(f"https://api.nasa.gov/EPIC/archive/natural/{split_date[0]}/{split_date[1]}/{split_date[2]}/png/{identifier}.png?api_key={nasa_api}", f"C:/Users/name/OneDrive/Рабочий стол/dvmn.org/dvmn_API/Lesson4/images/{identifier}.png")
+	download_image(f"https://api.nasa.gov/EPIC/archive/natural/{split_date[0]}/{split_date[1]}/{split_date[2]}/png/{identifier}.png?api_key={nasa_api}", f"C:/Users/name/OneDrive/Рабочий стол/dvmn.org/dvmn_API/Lesson4/Space_photos_sender/images/{identifier}.png")

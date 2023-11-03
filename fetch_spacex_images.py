@@ -19,6 +19,6 @@ try:
 	for url in urls:
 		photo_number += 1
 		extension = get_photo_extension(url)
-		download_image(url, f"C:/Users/name/OneDrive/Рабочий стол/dvmn.org/dvmn_API/Lesson4/images/launch{photo_number}{extension}")
+		download_image(url, f"C:/Users/name/OneDrive/Рабочий стол/dvmn.org/dvmn_API/Lesson4/Space_photos_sender/images/launch{photo_number}{extension}")
 except:
 	pass

@@ -12,4 +12,4 @@ photo_number = 0
 for apod_info in too_many_apods_info:
 	photo_number += 1
 	extension_of_apod = get_photo_extension(apod_info["url"])
-	download_image(apod_info["url"], f"C:/Users/name/OneDrive/Рабочий стол/dvmn.org/dvmn_API/Lesson4/images/apod{photo_number}{extension_of_apod}")
+	download_image(apod_info["url"], f"C:/Users/name/OneDrive/Рабочий стол/dvmn.org/dvmn_API/Lesson4/Space_photos_sender/images/apod{photo_number}{extension_of_apod}")
