@@ -5,9 +5,8 @@ from os.path import splitext
 
 def download_image(url, path):
 	img = requests.get(url)
-	out = open(path, "wb")
-	out.write(img.content)
-	out.close()
+	with open(path, "wb") as out:
+		out.write(img.content)
 
 def get_photo_extension(url):
 	path = urlsplit(url)
