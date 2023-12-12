@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from time import sleep
 import argparse
 import random
+from telegram.error import NetworkError
 
 
 def main():
@@ -13,12 +14,9 @@ def main():
 	parser = argparse.ArgumentParser(
 		description="Программа запускает телеграмм бота с заданной частотой публикации фото."
 		)
-	parser.add_argument("--frequency", "-fq", help="С помощью этого аргумента можно регулировать частоту публикации фото (По умолчанию 240 мин). Указывать в минутах.")
+	parser.add_argument("--frequency", "-fq", default=240, help="С помощью этого аргумента можно регулировать частоту публикации фото (По умолчанию 240 мин). Указывать в минутах.")
 	args = parser.parse_args()
-	if args.frequency != None:
-		frequency = args.frequency
-	else:
-		frequency = 240
+	frequency = args.frequency
 	bot = telegram.Bot(token=telegram_token)
 	images_info =  os.walk("images")
 	for image in images_info:
@@ -26,8 +24,15 @@ def main():
 	while True:
 		random.shuffle(image_names)
 		for image_name in image_names:
-			with open(os.path.join("images", image_name), 'rb') as file:
-				bot.send_document(chat_id=chat_id, document=file)
+			while True:
+				try:
+					with open(os.path.join("images", image_name), 'rb') as file:
+						bot.send_document(chat_id=chat_id, document=file)
+						break
+				except NetworkError as e:
+					print("NetworkError: ", e, "try again after 5 seconds")	
+					sleep(5)
+
 			sleep(float(frequency)*60)
 
 

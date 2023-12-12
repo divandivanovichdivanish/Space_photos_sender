@@ -22,7 +22,11 @@ pip install -r requirements.txt
 ### Пример запуска скрипта
 
 Для дополнительных скриптов:
-![Screenshot of correct program execution](/images/launch_example.png)
+```
+>>>python fetch_spacex_images.py
+
+>>>
+```
 Основной скрипт запускает бесконечный цикл.
 Его корректное выполнение - это отсутствие ошибок и публикация фото в телеграм канал.
 

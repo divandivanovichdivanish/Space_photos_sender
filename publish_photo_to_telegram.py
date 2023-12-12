@@ -14,14 +14,18 @@ def main():
 	parser = argparse.ArgumentParser(
 		description="Программа публикует указанное фото в телеграм канал."
 		)
-	parser.add_argument("--photo_name", "-fn", help="С помощью этого аргумента можно выбрать фото для публикации. Если не указано публикует случайное.")
+	parser.add_argument("--photo_name", "-phn", help="С помощью этого аргумента можно выбрать фото для публикации. Если не указано публикует случайное.")
 	args = parser.parse_args()
-	if args.photo_name != None:
-		bot.send_document(chat_id=chat_id, document=open(os.path.join("images", f'{image_names[0]}', 'rb'))
+	photo_name = args.photo_name
+	if photo_name is not None:
+		with open(os.path.join("images", photo_name), 'rb') as file:
+			bot.send_document(chat_id=chat_id, document=file)
 	else:
 		random.shuffle(image_names)
-		bot.send_document(chat_id=chat_id, document=open(os.path.join("images", f'{image_names[0]}', 'rb')))
+		with open(os.path.join("images", f'{image_names[0]}'), 'rb') as file:
+			bot.send_document(chat_id=chat_id, document=file)
 
 
 if __name__ == '__main__':
+	load_dotenv()
 	main()
