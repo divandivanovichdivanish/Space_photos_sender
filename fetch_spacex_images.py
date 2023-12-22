@@ -2,9 +2,6 @@ import requests
 from frequent_functions import download_image, get_photo_extension
 import argparse
 import os
-import telegram
-from telegram.error import NetworkError
-
 
 def main():
 	parser = argparse.ArgumentParser(
@@ -22,7 +19,6 @@ def main():
 	for url_num, url in enumerate(urls):
 		extension = get_photo_extension(url)
 		download_image(url, os.path.join("images", f"launch{url_num}{extension}"))
-	exception telegram.error.NetworkError(message)
 
 
 if __name__ == '__main__':
