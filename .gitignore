@@ -1,5 +1,5 @@
 *.env
 old_main.py
 test.py
-/images/*
+images/
 __pycache__/

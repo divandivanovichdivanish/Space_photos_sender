@@ -1,13 +1,11 @@
-import telegram
 import os
 from dotenv import load_dotenv
 import argparse
 import random
+from frequent_functions import publish_photo_to_tg
 
 def main():
-	telegram_token = os.environ["TG_TOKEN"]
-	chat_id = os.environ["TG_CHAT_ID"]
-	bot = telegram.Bot(token=telegram_token)
+	load_dotenv()
 	images_info =  os.walk("images")
 	for images in images_info:
 		image_names = images[2]
@@ -18,14 +16,12 @@ def main():
 	args = parser.parse_args()
 	photo_name = args.photo_name
 	if photo_name is not None:
-		with open(os.path.join("images", photo_name), 'rb') as file:
-			bot.send_document(chat_id=chat_id, document=file)
+		publish_photo_to_tg(photo_name)
 	else:
 		random.shuffle(image_names)
-		with open(os.path.join("images", f'{image_names[0]}'), 'rb') as file:
-			bot.send_document(chat_id=chat_id, document=file)
+		publish_photo_to_tg(image_names[0])
+
 
 
 if __name__ == '__main__':
-	load_dotenv()
 	main()
