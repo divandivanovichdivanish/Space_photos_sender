@@ -2,6 +2,7 @@ import requests
 from frequent_functions import download_image
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 
 def main():
@@ -13,14 +14,19 @@ def main():
 		response.raise_for_status()
 	except requests.exceptions.HTTPError:
 		print("Неверный токен")
-	except DoesNotExist:
+	except requests.exceptions.ConnectionError:
 		print("Такой страницы не существует")
 	for photo_info in response.json():
 		response_date = photo_info["date"]
-		date = response_date.split()
-		split_date = date[0].split("-")
+		date = datetime.fromisoformat(response_date)
+		formatted_date = date.strftime("%Y/%m/%d")
 		identifier = photo_info["image"]
-		download_image(f"https://api.nasa.gov/EPIC/archive/natural/{split_date[0]}/{split_date[1]}/{split_date[2]}/png/{identifier}.png", os.path.join("images", f"{identifier}.png"), payload)
+		try:
+			download_image(f"https://api.nasa.gov/EPIC/archive/natural/{formatted_date}/png/{identifier}.png", os.path.join("images", f"{identifier}.png"), payload)
+		except requests.exceptions.HTTPError:
+			print("Неверный токен")
+		except requests.exceptions.ConnectionError:
+			print("Такой страницы не существует")
 
 
 if __name__ == '__main__':

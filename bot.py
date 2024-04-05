@@ -9,6 +9,8 @@ from frequent_functions import publish_photo_to_tg
 
 def main():
 	load_dotenv()
+	telegram_token = os.environ["TG_TOKEN"]
+	chat_id = os.environ["TG_CHAT_ID"]
 	parser = argparse.ArgumentParser(
 		description="Программа запускает телеграмм бота с заданной частотой публикации фото."
 		)

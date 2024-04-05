@@ -6,6 +6,8 @@ from frequent_functions import publish_photo_to_tg
 
 def main():
 	load_dotenv()
+	telegram_token = os.environ["TG_TOKEN"]
+	chat_id = os.environ["TG_CHAT_ID"]
 	images_info =  os.walk("images")
 	for images in images_info:
 		image_names = images[2]
