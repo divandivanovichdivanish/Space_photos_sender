@@ -21,8 +21,8 @@ def main():
 	try:
 		urls = response.json()["links"]["flickr"]["original"]
 		for url_num, url in enumerate(urls, start=1):
-			download_image(url, os.path.join("images", f"launch{url_num}{extension}"), None)
 			extension = get_photo_extension(url)
+			download_image(url, os.path.join("images", f"launch{url_num}{extension}"), None)
 	except AttributeError:
         	print("Отсутствуют ссылки на фотографии")
 	except requests.exceptions.ConnectionError:

@@ -18,10 +18,10 @@ def main():
 	args = parser.parse_args()
 	photo_name = args.photo_name
 	if photo_name is not None:
-		publish_photo_to_tg(photo_name)
+		publish_photo_to_tg(photo_name, telegram_token, chat_id)
 	else:
 		random.shuffle(image_names)
-		publish_photo_to_tg(image_names[0])
+		publish_photo_to_tg(image_names[0], telegram_token, chat_id)
 
 
 

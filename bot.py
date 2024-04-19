@@ -25,7 +25,7 @@ def main():
 		for image_name in image_names:
 			while True:
 				try:
-					publish_photo_to_tg(image_name)
+					publish_photo_to_tg(image_name, telegram_token, chat_id)
 					break
 				except NetworkError as e:
 					print("NetworkError: ", e, "try again after 5 seconds")	
