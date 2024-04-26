@@ -4,6 +4,13 @@ import argparse
 import os
 from dotenv import load_dotenv
 
+
+def download_photo(response):
+	urls = response.json()["links"]["flickr"]["original"]
+	for url_num, url in enumerate(urls, start=1):
+		extension = get_photo_extension(url)
+		download_image(url, os.path.join("images", f"launch{url_num}{extension}"), None)
+
 def main():
 	load_dotenv()
 	parser = argparse.ArgumentParser(
@@ -16,17 +23,11 @@ def main():
 	try:
 		response = requests.get(f"https://api.spacexdata.com/v5/launches/{identifier}")
 		response.raise_for_status()
+		download_photo(response)
 	except requests.exceptions.ConnectionError:
 		print("Нет такой страницы")
-	try:
-		urls = response.json()["links"]["flickr"]["original"]
-		for url_num, url in enumerate(urls, start=1):
-			extension = get_photo_extension(url)
-			download_image(url, os.path.join("images", f"launch{url_num}{extension}"), None)
 	except AttributeError:
         	print("Отсутствуют ссылки на фотографии")
-	except requests.exceptions.ConnectionError:
-		print("Такой страницы не существует")
 
 
 if __name__ == '__main__':

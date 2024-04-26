@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 def main():
 	load_dotenv()
 	payload = {
-		"start_date" : "2024-01-01",
+		"start_date" : "2024-03-01",
 		"api_key" : os.environ["NASA_API"]
 	}
 	error = False
@@ -26,8 +26,6 @@ def main():
 		for apod_num, apod_info in enumerate(too_many_apods_info, start=1):
 			extension_of_apod = get_photo_extension(apod_info["url"])
 			download_image(apod_info["url"], os.path.join("images", f"apod{apod_num}{extension_of_apod}"), None)
-			except requests.exceptions.ConnectionError:
-				print("Такой страницы не существует")
 
 
 

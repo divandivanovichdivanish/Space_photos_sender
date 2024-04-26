@@ -21,3 +21,9 @@ def publish_photo_to_tg(image_name, telegram_token, chat_id):
 	bot = telegram.Bot(token=telegram_token)
 	with open(os.path.join("images", image_name), 'rb') as file:
 		bot.send_document(chat_id=chat_id, document=file)
+
+def get_image_names():
+	images_info =  os.walk("images")
+	for images in images_info:
+		image_names = images[2]
+	return image_names

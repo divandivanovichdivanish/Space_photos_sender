@@ -2,15 +2,13 @@ import os
 from dotenv import load_dotenv
 import argparse
 import random
-from frequent_functions import publish_photo_to_tg
+from frequent_functions import publish_photo_to_tg, get_image_names
 
 def main():
 	load_dotenv()
 	telegram_token = os.environ["TG_TOKEN"]
 	chat_id = os.environ["TG_CHAT_ID"]
-	images_info =  os.walk("images")
-	for images in images_info:
-		image_names = images[2]
+	image_names = get_image_names()
 	parser = argparse.ArgumentParser(
 		description="Программа публикует указанное фото в телеграм канал."
 		)

@@ -17,9 +17,7 @@ def main():
 	parser.add_argument("--frequency", "-fq", default=240, help="С помощью этого аргумента можно регулировать частоту публикации фото (По умолчанию 240 мин). Указывать в минутах.")
 	args = parser.parse_args()
 	frequency = args.frequency
-	images_info =  os.walk("images")
-	for image in images_info:
-		image_names = image[2]
+	image_names = get_image_names()
 	while True:
 		random.shuffle(image_names)
 		for image_name in image_names:
