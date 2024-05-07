@@ -4,7 +4,7 @@ from time import sleep
 import argparse
 import random
 from telegram.error import NetworkError
-from frequent_functions import publish_photo_to_tg
+from frequent_functions import publish_photo_to_tg, get_image_names
 
 
 def main():

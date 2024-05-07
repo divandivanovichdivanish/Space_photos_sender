@@ -1,5 +1,5 @@
 import requests
-from urllib.parse import urlsplit, unquote
+from urllib.parse import urlsplit
 from os.path import splitext
 import os
 import telegram

@@ -2,7 +2,6 @@ import requests
 from frequent_functions import download_image, get_photo_extension
 from dotenv import load_dotenv
 import os
-from dotenv import load_dotenv
 
 
 def main():
