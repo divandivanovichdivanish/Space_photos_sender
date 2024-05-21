@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 Для дополнительных скриптов:
 ```
->>>python fetch_spacex_images.py
+>>>python download_spacex_images.py
 
 >>>
 ```
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 ```
 
 ```
->>>python get_some_really_EPIC_phootos.py
+>>>python download_some_really_EPIC_phootos.py
 
 >>>
 ```

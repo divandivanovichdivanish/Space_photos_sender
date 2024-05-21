@@ -5,11 +5,11 @@ import os
 from dotenv import load_dotenv
 
 
-def download_photo(response):
+def download_photos(response):
 	urls = response.json()["links"]["flickr"]["original"]
 	for url_num, url in enumerate(urls, start=1):
 		extension = get_photo_extension(url)
-		download_image(url, os.path.join("images", f"launch{url_num}{extension}"), None)
+		download_image(url, os.path.join(path, f"launch{url_num}{extension}"), None)
 
 def main():
 	load_dotenv()
@@ -17,17 +17,18 @@ def main():
 		description="Программа скачивает фото с запусков spacex по заданному id."
 		)
 	parser.add_argument("--identifier", "-id", default="latest", help="Идентификатор полета")
+	parser.add_argument("--path", "-pt", default="images", help="Задает путь к папке с фото.")
 	args = parser.parse_args()
+	path = args.path
 	identifier = args.identifier
-	response = None
 	try:
 		response = requests.get(f"https://api.spacexdata.com/v5/launches/{identifier}")
 		response.raise_for_status()
-		download_photo(response)
+		download_photos(response)
 	except requests.exceptions.ConnectionError:
 		print("Нет такой страницы")
 	except AttributeError:
-        	print("Отсутствуют ссылки на фотографии")
+        print("Отсутствуют ссылки на фотографии")
 
 
 if __name__ == '__main__':
