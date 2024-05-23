@@ -5,11 +5,11 @@ import os
 import telegram
 
 
-def download_image(url, path, params):
+def download_image(url, path, file_name, params):
     os.makedirs(path, exist_ok=True)
     img = requests.get(url, params=params)
     img.raise_for_status()
-    with open(path, "wb") as out:
+    with open(os.path.join(path, file_name), "wb") as out:
         out.write(img.content)
 
 

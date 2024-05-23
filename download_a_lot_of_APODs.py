@@ -2,6 +2,7 @@ import requests
 from frequent_functions import download_image, get_photo_extension
 from dotenv import load_dotenv
 import os
+import argparse
 
 
 def main():
@@ -30,7 +31,7 @@ def main():
         too_many_apods_info = response.json()
         for apod_num, apod_info in enumerate(too_many_apods_info, start=1):
             extension_of_apod = get_photo_extension(apod_info["url"])
-            download_image(apod_info["url"], os.path.join(path, f"apod{apod_num}{extension_of_apod}"), None)
+            download_image(apod_info["url"], path, f"apod{apod_num}{extension_of_apod}", None)
 
 
 if __name__ == '__main__':
