@@ -9,7 +9,6 @@ def main():
     load_dotenv()
     telegram_token = os.environ["TG_TOKEN"]
     chat_id = os.environ["TG_CHAT_ID"]
-    image_names = get_image_names(path)
     parser = argparse.ArgumentParser(
         description="Программа публикует указанное фото в телеграм канал."
         )
@@ -18,6 +17,7 @@ def main():
     args = parser.parse_args()
     path = args.path
     photo_name = args.photo_name
+    image_names = get_image_names(path)
     if photo_name is not None:
         publish_photo_to_tg(photo_name, telegram_token, chat_id, path)
     else:

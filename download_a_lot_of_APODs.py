@@ -29,9 +29,12 @@ def main():
         error = True
     if not error:
         too_many_apods_info = response.json()
-        for apod_num, apod_info in enumerate(too_many_apods_info, start=1):
-            extension_of_apod = get_photo_extension(apod_info["url"])
-            download_image(apod_info["url"], path, f"apod{apod_num}{extension_of_apod}", None)
+        apod_num = 0
+        for apod_info in too_many_apods_info:
+            if apod_info["media_type"] == "image":
+                apod_num += 1
+                extension_of_apod = get_photo_extension(apod_info["url"])
+                download_image(apod_info["url"], path, f"apod{apod_num}{extension_of_apod}", None)
 
 
 if __name__ == '__main__':

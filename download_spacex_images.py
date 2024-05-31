@@ -1,7 +1,6 @@
 import requests
 from frequent_functions import download_image, get_photo_extension
 import argparse
-import os
 from dotenv import load_dotenv
 
 

@@ -14,15 +14,15 @@ def main():
     parser = argparse.ArgumentParser(
         description="Программа запускает телеграмм бота с заданной частотой публикации фото."
         )
-    parser.add_argument("--frequency", "-fq", default=240, help="С помощью этого аргумента можно регулировать частоту публикации фото (По умолчанию 240 мин). Указывать в минутах.")
+    parser.add_argument("--frequency", "-fq", default=240, help="С помощью этого аргумента можно регулировать частоту публикации фото (По умолчанию 240 мин). Указывать в минутах.", type=int)
     parser.add_argument("--path", "-pt", default="images", help="Задает путь к папке с фото.")
     args = parser.parse_args()
-    frequency = args.frequency
+    frequency = args.frequency * 60
     path = args.path
     image_names = get_image_names(path)
     while True:
         random.shuffle(image_names)
-        if image_names == []:
+        if not image_names:
             print("Папка images пуста или отсутствует.")
             break
         for image_name in image_names:
@@ -33,7 +33,7 @@ def main():
                 except NetworkError as e:
                     print("NetworkError: ", e, "try again after 5 seconds")
                     sleep(5)
-                sleep(float(frequency)*60)
+            sleep(frequency)
 
 
 if __name__ == '__main__':

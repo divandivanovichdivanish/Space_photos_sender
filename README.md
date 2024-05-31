@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ### Как использовать
 
 Для работы основного скрипта нужны изображения в папке `images`.
-Для их скачивания можно запустить дополнительные скрипты (`download_a_lot_of_APODs`, `fetch_spacex_images`, `get_some_really_EPIC_photos`).
+Для их скачивания можно запустить дополнительные скрипты (`download_a_lot_of_APODs`, `download_spacex_images`, `download_some_really_EPIC_photos`).
 После их выполнения можно запускать основной скрипт.
 Второй скрипт для публикации фото в телеграм канал - `publish_photo_to_telegram`. Он публикует указанное фото из папки `images` с помощью аргумента `--photo_name`(`-phn`)(Если не указан публикует случайную фотографию).
 
